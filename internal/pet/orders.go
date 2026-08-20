@@ -86,8 +86,7 @@ func (s *Service) CreateOrder(ctx context.Context, principal Principal, input Cr
 		} else if err != nil {
 			return FosterOrder{}, err
 		}
-		item := ServiceItem{ID: selected.ServiceID, Price: servicePrice, Status: active}
-		if !item.Selectable() {
+		if active != 1 {
 			return FosterOrder{}, fmt.Errorf("%w: selected service is unavailable", ErrConflict)
 		}
 		selected.Subtotal = servicePrice * float64(selected.Quantity) * days

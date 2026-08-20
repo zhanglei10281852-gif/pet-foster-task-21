@@ -64,13 +64,6 @@ type ServiceItem struct {
 	UpdatedAt   time.Time `json:"updateTime"`
 }
 
-func (s ServiceItem) Selectable() bool {
-	if s.ID == 0 || s.Price < 0 {
-		return false
-	}
-	return true
-}
-
 type OrderService struct {
 	ServiceID int64   `json:"serviceId"`
 	Name      string  `json:"serviceName,omitempty"`
